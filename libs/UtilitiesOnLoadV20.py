@@ -93,37 +93,37 @@ def SelectionDebug(sel):
 
 
 def ObjectDebug(object):
-    print (type(object))
-    print ("	ID = " + str(GetID(object)))
+    print(type(object))
+    print("	ID = " + str(GetID(object)))
     if type(object) is DesignBody:
-        print ("	Body Name: " + object.Name)
-        print ("	Faces = " + str(object.Faces.Count))
-        print ("	Edges = " + str(object.Edges.Count))
+        print("	Body Name: " + object.Name)
+        print("	Faces = " + str(object.Faces.Count))
+        print("	Edges = " + str(object.Edges.Count))
     elif type(object) is DesignFace:
         surface = object.Shape.Geometry
         if type(surface) is Cylinder:
-            print ("	Cylinder")
+            print("	Cylinder")
         elif type(surface) is Sphere:
-            print ("	Sphere")
+            print("	Sphere")
         elif type(surface) is Torus:
-            print ("	Torus")
+            print("	Torus")
         elif type(surface) is Plane:
-            print ("	Plane")
+            print("	Plane")
         else:
-            print ("	Unknown Surface Type")
-        print ("	Edges = " + str(object.Edges.Count))
+            print("	Unknown Surface Type")
+        print("	Edges = " + str(object.Edges.Count))
     elif type(object) is DesignEdge:
         edge = object.Shape.Geometry
         if type(edge) is Line:
-            print ("	Line")
+            print("	Line")
         if type(edge) is Circle:
-            print ("	Circle")
+            print("	Circle")
         if type(edge) is Ellipse:
-            print ("	Ellipse")
-        print ("	Smooth = " + str(object.Shape.IsSmooth))
-        print ("	Concave = " + str(object.Shape.IsConcave))
-        print ("	Precision = " + str(object.Shape.Precision))
-        print ("	Faces = " + str(object.Faces.Count))
+            print("	Ellipse")
+        print("	Smooth = " + str(object.Shape.IsSmooth))
+        print("	Concave = " + str(object.Shape.IsConcave))
+        print("	Precision = " + str(object.Shape.Precision))
+        print("	Faces = " + str(object.Faces.Count))
 
 
 def ClearAll():
