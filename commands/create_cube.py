@@ -11,10 +11,3 @@ def create_cube(cube_plane, edge_langth, center_coordinate, angle_cube_plane, na
     profile = SpaceClaim.Api.V19.Geometry.RectangleProfile(cube_plane, edge_langth, edge_langth, center_coordinate, angle_cube_plane)
     cube = Body.ExtrudeProfile(profile, edge_langth)
     DesignBody.Create(Window.ActiveWindow.Document.MainPart, name_3D_object, cube)
-
-
-def run_work():
-    create_cube(cube_plane, edge_langth, center_coordinate, angle_cube_plane, name_3D_object)
-
-
-run_work()
