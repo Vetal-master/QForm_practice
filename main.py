@@ -1,41 +1,20 @@
-import sys
-sys.path.append('C:\Program Files education\QForm Engineer\SpaceClaim\Scripting')
-sys.path.append('C:\Program Files education\QForm Engineer\SpaceClaim\SpaceClaim.Api.V19')
-
-import UtilitiesOnLoadV20Custom
-
-rect = SpaceClaim.Api.V19.Geometry.RectangleProfile(Plane.PlaneXY,0.1,0.1,PointUV.Origin,0.0)
-bbody = Body.ExtrudeProfile(rect,0.1)
-DesignBody.Create(Window.ActiveWindow.Document.MainPart, "Brick", bbody)
+# Python Script, API Version = V19
+# Cube Parameters
+center_coordinate = PointUV.Create(0.05, 0.05)
+edge_langth = 0.1
+cube_plane = Plane.PlaneXY
+angle_cube_plane = 0
 
 
-circle_cavity = SpaceClaim.Api.V19.Geometry.CircleProfile(Plane.PlaneXY,0.01,PointUV.Origin,0.0)
-bbody = Body.ExtrudeProfile(circle_cavity,0.01)
-DesignBody.Create(Window.ActiveWindow.Document.MainPart, "Cylinder", bbody)
+def create_cube(cube_plane, edge_langth, center_coordinate, angle_cube_plane):
+    profile = SpaceClaim.Api.V19.Geometry.RectangleProfile(cube_plane, edge_langth, edge_langth, center_coordinate,
+                                                           angle_cube_plane)
+    cube = Body.ExtrudeProfile(profile, edge_langth)
+    DesignBody.Create(Window.ActiveWindow.Document.MainPart, "Cube", cube)
 
 
+def run_work():
+    create_cube(cube_plane, edge_langth, center_coordinate, angle_cube_plane)
 
 
-########Recorded#########
-
-# Intersect Bodies
-targets = Body2
-tools = Body3
-options = MakeSolidsOptions()
-result = Combine.Intersect(targets, tools, options, Info1)
-# EndBlock
-
-# Delete Objects
-selection = Body4
-result = Combine.RemoveRegions(selection, Info2)
-# EndBlock
-
-########Recorded#########
-
-
-
-
-selection = Body3
-result = Delete.Execute(selection)
-
-DocumentSave.Execute(r"D:deleteeee.stp", FileSettings1)
+run_work()
