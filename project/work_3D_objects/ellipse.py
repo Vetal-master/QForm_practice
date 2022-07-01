@@ -12,7 +12,3 @@ def work_ellipse(volume, object_parameters):
         "real_OY": object_parameters["relative_OY"] * scale,
         "real_OZ": object_parameters["relative_OZ"] * scale,
     }
-
-
-def trimming_ellipse():
-    print("trimming_ellipse")
