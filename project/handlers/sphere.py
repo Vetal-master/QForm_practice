@@ -1,5 +1,5 @@
 import math
-import SpaceClaim.cube_geometry as SC
+import SpaceClaim.sphere as SC
 
 
 def work_sphere(volume):

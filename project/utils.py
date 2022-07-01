@@ -12,8 +12,3 @@ def output_red_text(massage):
 def output_green_text(massage):
     print(Fore.GREEN + massage)
 
-
-def visibility():
-    mode = InteractionMode.Solid
-
-    ViewHelper.SetViewMode(mode, None)
