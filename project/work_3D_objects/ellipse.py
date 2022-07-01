@@ -1,4 +1,5 @@
 import math
+import SpaceClaim.cube_geometry as SC
 
 
 def work_ellipse(volume, object_parameters):
