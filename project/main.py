@@ -2,7 +2,7 @@ from tqdm import tqdm
 import time
 
 import porosity
-from Excel import geometry_data
+from Excel import geometry_data_input
 import config
 import utils
 
