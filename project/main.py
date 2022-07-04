@@ -11,7 +11,7 @@ from SpaceClaim import cube as SC_cube
 
 
 def run_work__test():
-    dataset = geometry_data.load_geometry_params(config.path_data_geometry, config.cols_geometry__)
+    dataset = geometry_data_input.load_geometry_params(config.path_data_geometry, config.cols_geometry__)
 
     count_experiments = len(dataset["type_object"])
 
