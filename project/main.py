@@ -2,7 +2,7 @@ from tqdm import tqdm
 import time
 
 import porosity
-import excel_IO
+from Excel import excel_IO
 import config
 import utils
 

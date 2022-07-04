@@ -1,5 +1,5 @@
 import math
-import SpaceClaim.cube as SC
+from SpaceClaim import cube as SC
 
 
 def calculate_cube(volume):

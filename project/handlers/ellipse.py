@@ -1,5 +1,5 @@
 import math
-import SpaceClaim.ellipse as SC
+from SpaceClaim import ellipse as SC
 
 
 def calculate_ellipse(volume, object_parameters):
