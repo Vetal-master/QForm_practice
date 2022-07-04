@@ -6,13 +6,25 @@ import handlers.cube as cube_handler
 import handlers.sphere as sphere_handler
 import handlers.ellipse as ellipse_handler
 
-# List results
-SUCCESS = 1
+# List results create
+SUCCESS = 0
 ERROR_CLASSIFICATION_TYPE = -1
+ERROR_POROSITY_PERCENT_OUT_OF_RANGE = -2
+ERROR_BASE_SIZE_OUT_OF_RANGE = -3
 
 
 def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
-    base_volume = math.pow(2 * base_size, 3)
+    if (porosity_percent > 100 or porosity_percent <= 0):
+        utils.output_red_text("Incorrect porosity percent")
+
+        return ERROR_POROSITY_PERCENT_OUT_OF_RANGE
+
+    if (base_size <= 0):
+        utils.output_red_text("Incorrect base size")
+
+        return ERROR_BASE_SIZE_OUT_OF_RANGE
+
+    base_volume = math.pow(base_size, 3)
 
     porosity_coefficient = porosity_percent / 100
 
@@ -32,6 +44,6 @@ def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
 
         return ERROR_CLASSIFICATION_TYPE
 
-    utils.output_green_text("SUCCESS")
+    # utils.output_green_text("SUCCESS")
 
     return SUCCESS
