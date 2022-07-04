@@ -2,25 +2,25 @@ from tqdm import tqdm
 import time
 
 import porosity
-from Excel import excel_IO
+from Excel import geometry_data
 import config
 import utils
 
+from SpaceClaim import utils as SC_utils
+from SpaceClaim import cube as SC_cube
 
-def run_work():
-    base_object.create_cube(cube_plane, edge_length, center_coordinate, angle_cube_plane, name_3D_object)
-
-
-# run_work()
 
 def run_work__test():
-    dataset = excel_IO.load_geometry_params(config.path_data_geometry, config.cols_geometry_)
+    dataset = geometry_data.load_geometry_params(config.path_data_geometry, config.cols_geometry__)
 
     count_experiments = len(dataset["type_object"])
 
     for i in tqdm(range(count_experiments), colour='blue', desc='Process', ncols=80):
+        # SC_cube.extrude_cube(config.cube_plane__, config.edge_length__ / 2, config.name_base_object__)
+        # SC_utils.visibility()
+
         if dataset["additional_parameter_1"][i] is None:
-            result = porosity.create(dataset["type_object"][i], dataset["percent_porosity"][i], config.edge_length)
+            result = porosity.create(dataset["type_object"][i], dataset["percent_porosity"][i], config.edge_length__)
         else:
             parameters = {
                 "relative_OX": dataset["additional_parameter_1"][i],
@@ -28,7 +28,7 @@ def run_work__test():
                 "relative_OZ": dataset["additional_parameter_3"][i]
             }
 
-            result = porosity.create(dataset["type_object"][i], dataset["percent_porosity"][i], config.edge_length, parameters)
+            result = porosity.create(dataset["type_object"][i], dataset["percent_porosity"][i], config.edge_length__, parameters)
 
         if result:
             utils.output_red_text(config.Error)

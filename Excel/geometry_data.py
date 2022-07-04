@@ -1,5 +1,5 @@
 import pandas
-import config
+from project import config
 
 
 def load_geometry_params(path, cols_geometry):
@@ -22,9 +22,5 @@ def load_geometry_params(path, cols_geometry):
         "additional_parameter_2": additional_parameter_2,
         "additional_parameter_3": additional_parameter_3
     }
-    #
-    # print(dataset["type_object"])
-    # print(dataset["percent_porosity"])
-    # print(dataset["additional_parameter_1"])
 
     return dataset

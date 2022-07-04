@@ -1,5 +1,6 @@
 import math
 from SpaceClaim import cube as SC
+from project import config
 
 
 def calculate_cube(volume):
@@ -7,4 +8,6 @@ def calculate_cube(volume):
 
 
 def work_cube(volume):
-    edge = calculate_cube(volume)
+    edge = calculate_cube(volume) / 2
+
+    # SC.execute_cube(config.cube_plane, edge, "execute")

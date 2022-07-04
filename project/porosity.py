@@ -11,6 +11,7 @@ SUCCESS = 0
 ERROR_CLASSIFICATION_TYPE = -1
 ERROR_POROSITY_PERCENT_OUT_OF_RANGE = -2
 ERROR_BASE_SIZE_OUT_OF_RANGE = -3
+ERROR_ELLIPSE_PARAMS = -4
 
 
 def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
@@ -37,13 +38,16 @@ def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
         sphere_handler.work_sphere(porosity_volume)
 
     elif type_3D_object == config.Ellipse:
+        if len(object_parameters) < 3:
+            utils.output_red_text("Incorrect additional parameters. Must be 3 parameters for ellipse")
+
+            return ERROR_ELLIPSE_PARAMS
+
         ellipse_handler.work_ellipse(porosity_volume, object_parameters)
 
     else:
         utils.output_red_text("Not such type 3D object")
 
         return ERROR_CLASSIFICATION_TYPE
-
-    # utils.output_green_text("SUCCESS")
 
     return SUCCESS
