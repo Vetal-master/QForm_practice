@@ -1,5 +1,6 @@
 import math
 from SpaceClaim import sphere as SC
+from SpaceClaim import utils as SC_utils
 
 
 def calculate_ellipse(volume):

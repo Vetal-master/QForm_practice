@@ -12,5 +12,8 @@ Cube = "куб"
 Sphere = "сфера"
 Ellipse = "эллипс"
 
+# Path save models
+path_save = "C:\Users\Andeo\Desktop\Практика\Задачи\Модель пористости\\tmp"
+
 # Заглушки
 cube_plane__ = 2
