@@ -51,7 +51,4 @@ def load_geometry_params(path, cols_geometry):
         else:
             list_geometry_set.append(experiment)
 
-    for ex in list_geometry_set:
-        print(ex.values())
-
     return list_geometry_set

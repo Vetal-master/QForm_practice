@@ -10,13 +10,19 @@ def calculate_ellipse(volume, object_parameters):
     scale = 3 * volume / (4 * math.pi * relative_coefficient)
 
     ellipse_parameters = {
-        "real_OX": object_parameters["relative_OX"] * scale,
-        "real_OY": object_parameters["relative_OY"] * scale,
-        "real_OZ": object_parameters["relative_OZ"] * scale,
+        "OX": object_parameters["relative_OX"] * scale,
+        "OY": object_parameters["relative_OY"] * scale,
+        "OZ": object_parameters["relative_OZ"] * scale,
     }
 
     return ellipse_parameters
 
 
-def work_ellipse(volume, object_parameters):
+def work_ellipse(volume, object_parameters, name="ellipse"):
     ellipse = calculate_ellipse(volume, object_parameters)
+
+    # SC.execute_ellipse(ellipse["OX"], ellipse["OY"], ellipse["OZ"], "execute")
+
+    # SC_utils.save_model(name)
+
+    # SC_utils.remove_model()

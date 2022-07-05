@@ -1,18 +1,17 @@
-import utils
+def extrude_cube(cube_plane, cube, name_3D_object, center_coordinate={"O1": 0, "O2": 0}, angle_cube_plane=0):
+    center = PointUV.Create(center_coordinate["O1"], center_coordinate["O2"])
 
-
-def extrude_cube(cube_plane, edge_length, type_3D_object, angle_cube_plane=0):
-    profile = SpaceClaim.Api.V19.Geometry.RectangleProfile(cube_plane, edge_length, edge_length,
-                                                           utils.center_coordinate(edge_length),
+    profile = SpaceClaim.Api.V19.Geometry.RectangleProfile(cube_plane, cube["O1"], cube["O2"],
+                                                           center,
                                                            angle_cube_plane)
 
-    cube = Body.ExtrudeProfile(profile, edge_length)
+    cube = Body.ExtrudeProfile(profile, cube["O3"])
 
-    DesignBody.Create(Window.ActiveWindow.Document.MainPart, type_3D_object, cube)
+    DesignBody.Create(Window.ActiveWindow.Document.MainPart, name_3D_object, cube)
 
 
-def execute_cube(cube_plane, edge_length, name_3D_object, angle_cube_plane=0):
-    extrude_cube(cube_plane, edge_length, name_3D_object)
+def execute_cube(cube_plane, cube, name_3D_object, center_coordinate={"O1": 0, "O2": 0}, angle_cube_plane=0):
+    extrude_cube(cube_plane, cube, name_3D_object, center_coordinate)
 
     targets = BodySelection.Create(GetRootPart().Bodies[0])
 

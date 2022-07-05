@@ -1,4 +1,4 @@
-def extrude_sphere(center_coordinate, radius):
+def extrude_sphere(radius, center_coordinate={"OX": 0, "OY": 0, "OZ": 0}):
     begin = Point.Create(M(center_coordinate["OX"]), M(center_coordinate["OY"]), M(center_coordinate["OZ"]))
 
     radius_coordinate = {
@@ -12,7 +12,7 @@ def extrude_sphere(center_coordinate, radius):
     SphereBody.Create(begin, end, ExtrudeType.ForceIndependent)
 
 
-def execute_sphere(center_coordinate, radius):
+def execute_sphere(radius, center_coordinate={"OX": 0, "OY": 0, "OZ": 0}):
     begin = Point.Create(M(center_coordinate["OX"]), M(center_coordinate["OY"]), M(center_coordinate["OZ"]))
 
     radius_coordinate = {

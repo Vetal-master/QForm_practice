@@ -1,10 +1,10 @@
-from System.Collections.Generic import List
-from System.Collections.Generic import ICollection
-import SpaceClaim.Api.V19.Unsupported
+# from System.Collections.Generic import List
+# from System.Collections.Generic import ICollection
+# import SpaceClaim.Api.V19.Unsupported
 
 
-def extrude_ellipse(a, b, c, center, name_3D_object):
-    center = Point.Create(center["OX"], center["OY"], center["OZ"])
+def extrude_ellipse(a, b, c, name_3D_object, center_coordinate={"OX": 0, "OY": 0, "OZ": 0}):
+    center = Point.Create(center_coordinate["OX"], center_coordinate["OY"], center_coordinate["OZ"])
 
     c1 = CurveSegment.Create(Ellipse.Create(Frame.Create(center, Direction.DirX, Direction.DirY), a, b),
                              Interval.Create(0, math.pi))
@@ -36,8 +36,8 @@ def extrude_ellipse(a, b, c, center, name_3D_object):
     DesignBody.Create(pt, name_3D_object, b)
 
 
-def execute_ellipse(a, b, c, center):
-    extrude_ellipse(a, b, c, center, "execute")
+def execute_ellipse(a, b, c, center_coordinate={"OX": 0, "OY": 0, "OZ": 0}):
+    extrude_ellipse(a, b, c, "execute", center_coordinate)
 
     targets = BodySelection.Create(GetRootPart().Bodies[0])
 
