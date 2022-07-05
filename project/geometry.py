@@ -19,7 +19,9 @@ def run_create_geometry_set():
     count_geometry_set = len(dataset)
 
     for i in tqdm(range(count_geometry_set), colour='blue', desc='Create 3D objects', ncols=80):
-        # SC_cube.extrude_cube(config.cube_plane__, config.edge_length__ / 2, config.name_base_object__)
+        # cube = {"O1": global_conf.edge_length__ / 2, "O2": global_conf.edge_length__ / 2, "O3": global_conf.edge_length__ / 2}
+        # center = {"O1": global_conf.edge_length__ / 4, "O2": global_conf.edge_length__ / 4}
+        # SC_cube.extrude_cube(global_conf.cube_plane__,  cube, config.name_base_object__, center)
         # SC_utils.visibility()
 
         if dataset[i]["type_object"] == global_conf.Cube or dataset[i]["type_object"] == global_conf.Sphere:

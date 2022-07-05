@@ -31,11 +31,13 @@ def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
 
     porosity_volume = porosity_coefficient * base_volume
 
+    name_model = type_3D_object + "_" + str(porosity_percent)
+
     if type_3D_object == global_conf.Cube:
-        cube_handler.work_cube(porosity_volume)
+        cube_handler.work_cube(porosity_volume, name_model)
 
     elif type_3D_object == global_conf.Sphere:
-        sphere_handler.work_sphere(porosity_volume)
+        sphere_handler.work_sphere(porosity_volume, name_model)
 
     elif type_3D_object == global_conf.Ellipse:
         if len(object_parameters) < 3:
@@ -43,7 +45,7 @@ def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
 
             return ERROR_ELLIPSE_PARAMS
 
-        ellipse_handler.work_ellipse(porosity_volume, object_parameters)
+        ellipse_handler.work_ellipse(porosity_volume, object_parameters, name_model)
 
     else:
         utils.output_red_text("Not such type 3D object")
