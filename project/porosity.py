@@ -1,5 +1,5 @@
 import math
-import config
+from project.configs import main as global_conf
 import utils
 
 import handlers.cube as cube_handler
@@ -31,13 +31,13 @@ def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
 
     porosity_volume = porosity_coefficient * base_volume
 
-    if type_3D_object == config.Cube:
+    if type_3D_object == global_conf.Cube:
         cube_handler.work_cube(porosity_volume)
 
-    elif type_3D_object == config.Sphere:
+    elif type_3D_object == global_conf.Sphere:
         sphere_handler.work_sphere(porosity_volume)
 
-    elif type_3D_object == config.Ellipse:
+    elif type_3D_object == global_conf.Ellipse:
         if len(object_parameters) < 3:
             utils.output_red_text("Incorrect additional parameters. Must be 3 parameters for ellipse")
 
