@@ -1,10 +1,19 @@
 import math
-from project.configs import main as global_conf
-import utils
+from sys import path as path_sys
+from os import path as path_os
 
-import handlers.cube as cube_handler
-import handlers.sphere as sphere_handler
-import handlers.ellipse as ellipse_handler
+module_path_handlers = path_os.abspath(path_os.join(path_os.dirname(__file__), 'handlers'))
+path_sys.append(module_path_handlers)
+
+lib_path_configs = path_os.abspath(path_os.join(path_os.dirname(__file__), 'configs'))
+path_sys.append(lib_path_configs)
+
+import geometry_conf as global_conf
+import global_utils as utils
+
+import h_cube as cube_handler
+import h_sphere as sphere_handler
+import h_ellipse as ellipse_handler
 
 # List results create
 SUCCESS = 0

@@ -1,8 +1,13 @@
 import pandas
+from sys import path as path_sys
+from os import path as path_os
 
-from project.configs import pandas as excel_conf
-from project.configs import main as global_conf
-from project import utils
+lib_path_configs = path_os.abspath(path_os.join(path_os.dirname(__file__), 'configs'))
+path_sys.append(lib_path_configs)
+
+import pandas_geometry_conf as excel_conf
+import geometry_conf as global_conf
+import global_utils as utils
 
 # List results create
 ERROR_EMPTY_DATASET = -1

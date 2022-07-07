@@ -1,4 +1,4 @@
-from project.configs import main as global_conf
+from project.configs import geometry_conf as global_conf
 
 
 def visibility():
