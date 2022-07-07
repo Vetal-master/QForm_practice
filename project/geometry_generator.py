@@ -11,7 +11,7 @@ path_sys.append(module_path_configs)
 module_path_SC = path_os.abspath(path_os.join(path_os.dirname(__file__), 'SpaceClaim'))
 path_sys.append(module_path_SC)
 
-from configs import geometry_conf as global_conf
+import geometry_conf as global_conf
 import porosity_generator as porosity
 # import SP_cube as SC_base
 
