@@ -272,7 +272,7 @@ def work_cube(volume, name="cube"):
     remove_model()
 
 
-def calculate_ellipse(volume, object_parameters):
+def calculate_ellipse(volume, object_parameters, data=0):
     relative_coefficient = object_parameters["relative_OX"] * object_parameters["relative_OY"] * object_parameters[
         "relative_OZ"]
 
@@ -289,6 +289,7 @@ def calculate_ellipse(volume, object_parameters):
 
 def work_ellipse(volume, object_parameters, name="ellipse"):
     ellipse = calculate_ellipse(volume, object_parameters)
+    print(ellipse)
 
     execute_ellipse(ellipse["OX"], ellipse["OY"], ellipse["OZ"], "execute")
 
@@ -297,12 +298,12 @@ def work_ellipse(volume, object_parameters, name="ellipse"):
     remove_model()
 
 
-def calculate_ellipse(volume):
+def calculate_sphere(volume):
     return math.pow(3.0 * volume / (4.0 * math.pi), 1.0 / 3.0)
 
 
 def work_sphere(volume, name="sphere"):
-    radius = calculate_ellipse(volume)
+    radius = calculate_sphere(volume)
 
     execute_sphere(radius)
 
