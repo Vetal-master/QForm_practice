@@ -14,6 +14,7 @@ Ellipse = "эллипс"
 
 # Path save models
 path_save = r"C:\Users\Andeo\Desktop\Практика\Задачи\Модель пористости\tmp"
+path_tmp_data_geometry = r"C:\GitHub\QForm_practice\tmp_data_log\geometry.txt"
 
 # Заглушки
 cube_plane__ = 2
