@@ -4,6 +4,10 @@ from os import path as path_os
 module_path_generator = path_os.abspath(path_os.join(path_os.dirname(__file__), ''))
 path_sys.append(module_path_generator)
 
-import geometry_generator as geometry
+module_path_configs = path_os.abspath(path_os.join(path_os.dirname(__file__), 'configs'))
+path_sys.append(module_path_configs)
 
-geometry.run_create_geometry_set()
+import geometry_generator as geometry
+from geometry_conf import *
+
+geometry.run_create_geometry_set(path_geometry_data__)

@@ -8,6 +8,6 @@ module_path_configs = path_os.abspath(path_os.join(path_os.dirname(__file__), 'c
 path_sys.append(module_path_configs)
 
 import geometry_data_reader as reader
-import pandas_geometry_conf as excel_conf
+from pandas_geometry_conf import *
 
-reader.load_geometry_params(excel_conf.path_data_geometry, excel_conf.cols_geometry__)
+reader.load_geometry_params(path_data_geometry, cols_geometry__)

@@ -15,7 +15,7 @@ ERROR_EMPTY_DATASET = -1
 
 def check_equal_geometry_params(left, right):
     if left["type_object"] == right["type_object"] and left["percent_porosity"] == right["percent_porosity"]:
-        if left["type_object"] == global_conf.Ellipse:
+        if left["type_object"] == global_conf.Ellipse__:
             if (left["additional_parameter_1"] == right["additional_parameter_1"] and
                     left["additional_parameter_2"] == right["additional_parameter_2"] and
                     left["additional_parameter_3"] == right["additional_parameter_3"]):
@@ -25,7 +25,7 @@ def check_equal_geometry_params(left, right):
     return False
 
 
-def load_geometry_params(path, cols_geometry, path_save=global_conf.path_tmp_data_geometry):
+def load_geometry_params(path, cols_geometry, path_save=global_conf.path_tmp_data_geometry__):
     dataset_df = pandas.read_excel(path, usecols=cols_geometry)
 
     count_geometry_set = len(dataset_df)
@@ -45,7 +45,7 @@ def load_geometry_params(path, cols_geometry, path_save=global_conf.path_tmp_dat
             "percent_porosity": row[excel_conf.porosity_percent]
         }
 
-        if model["type_object"] == global_conf.Ellipse:
+        if model["type_object"] == global_conf.Ellipse__:
             model["additional_parameter_1"] = row[excel_conf.additional_parameter_1]
             model["additional_parameter_2"] = row[excel_conf.additional_parameter_2]
             model["additional_parameter_3"] = row[excel_conf.additional_parameter_3]

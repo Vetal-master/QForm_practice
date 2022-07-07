@@ -8,13 +8,13 @@ edge_length__ = 0.1 * 2  # (м)
 name_base_object__ = "base_cube"
 
 # Set 3D objects
-Cube = "куб"
-Sphere = "сфера"
-Ellipse = "эллипс"
+Cube__ = "куб"
+Sphere__ = "сфера"
+Ellipse__ = "эллипс"
 
 # Path save models
-path_save = r"C:\Users\Andeo\Desktop\Практика\Задачи\Модель пористости\tmp"
-path_tmp_data_geometry = r"C:\GitHub\QForm_practice\tmp_data_log\geometry.txt"
+path_save__ = r"C:\Users\Andeo\Desktop\Практика\Задачи\Модель пористости\tmp"
+path_geometry_data__ = r"C:\GitHub\QForm_practice\tmp_data_log\geometry.txt"
 
-# Заглушки
-cube_plane__ = 2
+print(Cube__)
+

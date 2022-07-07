@@ -8,7 +8,7 @@ path_sys.append(module_path_handlers)
 module_path_configs = path_os.abspath(path_os.join(path_os.dirname(__file__), 'configs'))
 path_sys.append(module_path_configs)
 
-import geometry_conf as global_conf
+from geometry_conf import *
 import global_utils as utils
 
 import h_cube as cube_handler
@@ -40,7 +40,7 @@ def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
 
     porosity_volume = porosity_coefficient * base_volume
 
-    if type_3D_object == global_conf.Ellipse:
+    if type_3D_object == Ellipse__:
         name_model = type_3D_object + "_" + \
                      str(porosity_percent) + "_" + \
                      str(object_parameters["relative_OX"]) + "_" + \
@@ -49,25 +49,21 @@ def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
     else:
         name_model = type_3D_object + "_" + str(porosity_percent)
 
-    if type_3D_object == global_conf.Cube:
+    print(name_model)
+
+    if type_3D_object == Cube__:
         cube_handler.work_cube(porosity_volume, name_model)
 
-        print(name_model)
-
-    elif type_3D_object == global_conf.Sphere:
+    elif type_3D_object == Sphere__:
         sphere_handler.work_sphere(porosity_volume, name_model)
 
-        print(name_model)
-
-    elif type_3D_object == global_conf.Ellipse:
+    elif type_3D_object == Ellipse__:
         if len(object_parameters) < 3:
             utils.output_red_text("Incorrect additional parameters. Must be 3 parameters for ellipse")
 
             return ERROR_ELLIPSE_PARAMS
 
         ellipse_handler.work_ellipse(porosity_volume, object_parameters, name_model)
-
-        print(name_model)
 
     else:
         utils.output_red_text("Not such type 3D object")

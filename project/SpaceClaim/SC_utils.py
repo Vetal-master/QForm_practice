@@ -7,7 +7,7 @@ def visibility():
     ViewHelper.SetViewMode(mode, None)
 
 
-def save_model(name, path=global_conf.path_save):
+def save_model(name, path=global_conf.path_save__):
     options = ExportOptions.Create()
     DocumentSave.Execute(path + "\\" + name + ".stp", options)
 

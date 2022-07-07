@@ -1,14 +1,7 @@
-from colorama import init, Fore
-from colorama import Back
-from colorama import Style
-
-init(autoreset=True)
-
-
 def output_red_text(massage):
-    print(Fore.RED + massage)
+    print("\033[31m {}" .format(massage))
 
 
 def output_green_text(massage):
-    print(Fore.GREEN + massage)
+    print("\033[32m {}" .format(massage))
 

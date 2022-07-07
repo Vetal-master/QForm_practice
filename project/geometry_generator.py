@@ -1,4 +1,3 @@
-import sys
 from sys import path as path_sys
 from os import path as path_os
 
@@ -11,14 +10,16 @@ path_sys.append(module_path_configs)
 module_path_SC = path_os.abspath(path_os.join(path_os.dirname(__file__), 'SpaceClaim'))
 path_sys.append(module_path_SC)
 
-import geometry_conf as global_conf
+print(module_path_SC)
+
+from geometry_conf import *
 import porosity_generator as porosity
 # import SP_cube as SC_base
 
 import global_utils as utils
 
 
-def run_create_geometry_set(path=global_conf.path_tmp_data_geometry):
+def run_create_geometry_set(path):
     geometry_set = open(path, "r")
     lines_models = geometry_set.readlines()
 
@@ -33,7 +34,7 @@ def run_create_geometry_set(path=global_conf.path_tmp_data_geometry):
         type_object = model_data[0]
         percent_porosity = model_data[1]
 
-        if type_object == global_conf.Ellipse:
+        if type_object == Ellipse__:
             parameters = {
                 "relative_OX": float(model_data[2]),
                 "relative_OY": float(model_data[3]),
@@ -41,13 +42,13 @@ def run_create_geometry_set(path=global_conf.path_tmp_data_geometry):
             }
 
             result = porosity.create(type_object, float(percent_porosity.replace('\n', '')),
-                                     global_conf.edge_length__, parameters)
+                                     edge_length__, parameters)
         else:
             result = porosity.create(type_object, float(percent_porosity),
-                                     global_conf.edge_length__)
+                                     edge_length__)
 
         if result:
-            utils.output_red_text(global_conf.error_geometry)
+            utils.output_red_text(error_geometry)
             exit(-1)
 
-    utils.output_green_text(global_conf.success_geometry)
+    utils.output_green_text(success_geometry)
