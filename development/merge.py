@@ -23,8 +23,6 @@ Ellipse__ = "ellipse"
 path_save__ = r"C:\Users\Andeo\Desktop\Практика\Задачи\Модель пористости\tmp"
 path_geometry_data__ = r"C:\GitHub\QForm_practice\tmp_data_log\geometry.txt"
 
-print(Cube__)
-
 
 def visibility():
     mode = InteractionMode.Solid
@@ -59,13 +57,13 @@ def extrude_cube(cube_plane, cube, name_3D_object, center_coordinate={"O1": 0, "
 def execute_cube(cube_plane, cube, name_3D_object, center_coordinate={"O1": 0, "O2": 0}, angle_cube_plane=0):
     extrude_cube(cube_plane, cube, name_3D_object, center_coordinate)
 
+    time.sleep(4)
+
     targets = BodySelection.Create(GetRootPart().Bodies[0])
 
     tools = BodySelection.Create(GetRootPart().Bodies[1])
 
     options = MakeSolidsOptions()
-
-    time.sleep(5)
 
     result = Combine.Intersect(targets, tools, options)
 
@@ -164,7 +162,7 @@ def run_create_geometry_set(path):
     lines_models = geometry_set.readlines()
 
     for line_model in lines_models:
-        cube = {"O1": edge_length__, "O2": edge_length__ / 2, "O3": edge_length__ / 2}
+        cube = {"O1": edge_length__ / 2, "O2": edge_length__ / 2, "O3": edge_length__ / 2}
         center = {"O1": edge_length__ / 4, "O2": edge_length__ / 4}
         extrude_cube(cube_plane__, cube, name_base_object__, center)
         visibility()
@@ -215,7 +213,7 @@ def create_por(type_3D_object, porosity_percent, base_size, object_parameters=No
 
     base_volume = math.pow(base_size, 3)
 
-    porosity_coefficient = porosity_percent / 100
+    porosity_coefficient = porosity_percent
 
     porosity_volume = porosity_coefficient * base_volume
 
@@ -228,7 +226,7 @@ def create_por(type_3D_object, porosity_percent, base_size, object_parameters=No
     else:
         name_model = type_3D_object + "_" + str(porosity_percent)
 
-    print(name_model)
+    print(name_model + " Start")
 
     if type_3D_object == Cube__:
         work_cube(porosity_volume, name_model)
@@ -261,7 +259,7 @@ def output_green_text(massage):
 
 
 def calculate_cube(volume):
-    return math.pow(volume, 1 / 3)
+    return float(math.pow(volume, float(1.0 / 3.0)))
 
 
 def work_cube(volume, name="cube"):
@@ -278,12 +276,12 @@ def calculate_ellipse(volume, object_parameters):
     relative_coefficient = object_parameters["relative_OX"] * object_parameters["relative_OY"] * object_parameters[
         "relative_OZ"]
 
-    scale = 3 * volume / (4 * math.pi * relative_coefficient)
+    scale = 3.0 * volume / (4.0 * math.pi * relative_coefficient)
 
     ellipse_parameters = {
         "OX": object_parameters["relative_OX"] * scale,
         "OY": object_parameters["relative_OY"] * scale,
-        "OZ": object_parameters["relative_OZ"] * scale,
+        "OZ": object_parameters["relative_OZ"] * scale
     }
 
     return ellipse_parameters
@@ -300,7 +298,7 @@ def work_ellipse(volume, object_parameters, name="ellipse"):
 
 
 def calculate_ellipse(volume):
-    return math.pow(3 * volume / (4 * math.pi), 1 / 3)
+    return math.pow(3.0 * volume / (4.0 * math.pi), 1.0 / 3.0)
 
 
 def work_sphere(volume, name="sphere"):

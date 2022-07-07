@@ -8,9 +8,9 @@ edge_length__ = 0.1 * 2  # (м)
 name_base_object__ = "base_cube"
 
 # Set 3D objects
-Cube__ = "куб"
-Sphere__ = "сфера"
-Ellipse__ = "эллипс"
+Cube__ = "cub"
+Sphere__ = "sphere"
+Ellipse__ = "ellipse"
 
 # Path save models
 path_save__ = r"C:\Users\Andeo\Desktop\Практика\Задачи\Модель пористости\tmp"
