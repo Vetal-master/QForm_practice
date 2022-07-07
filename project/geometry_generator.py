@@ -1,3 +1,4 @@
+import sys
 from sys import path as path_sys
 from os import path as path_os
 
@@ -7,17 +8,14 @@ path_sys.append(module_path_excel)
 module_path_configs = path_os.abspath(path_os.join(path_os.dirname(__file__), 'configs'))
 path_sys.append(module_path_configs)
 
-module_path_SP = path_os.abspath(path_os.join(path_os.dirname(__file__), 'SpaceClaim'))
-path_sys.append(module_path_SP)
+module_path_SC = path_os.abspath(path_os.join(path_os.dirname(__file__), 'SpaceClaim'))
+path_sys.append(module_path_SC)
 
-import geometry_conf as global_conf
+from configs import geometry_conf as global_conf
 import porosity_generator as porosity
-import SP_cube as SC_base
-
-print("Bingo!!!!!!!!")
+# import SP_cube as SC_base
 
 import global_utils as utils
-
 
 
 def run_create_geometry_set(path=global_conf.path_tmp_data_geometry):
@@ -25,10 +23,10 @@ def run_create_geometry_set(path=global_conf.path_tmp_data_geometry):
     lines_models = geometry_set.readlines()
 
     for line_model in lines_models:
-        cube = {"O1": global_conf.edge_length__ / 2, "O2": global_conf.edge_length__ / 2, "O3": global_conf.edge_length__ / 2}
-        center = {"O1": global_conf.edge_length__ / 4, "O2": global_conf.edge_length__ / 4}
-        SC_cube.extrude_cube(global_conf.cube_plane__,  cube, config.name_base_object__, center)
-        SC_utils.visibility()
+        # cube = {"O1": global_conf.edge_length__ / 2, "O2": global_conf.edge_length__ / 2, "O3": global_conf.edge_length__ / 2}
+        # center = {"O1": global_conf.edge_length__ / 4, "O2": global_conf.edge_length__ / 4}
+        # SC_cube.extrude_cube(global_conf.cube_plane__,  cube, config.name_base_object__, center)
+        # SC_utils.visibility()
 
         model_data = line_model.split(" ", 5)
 
