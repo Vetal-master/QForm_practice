@@ -14,10 +14,7 @@ def calculate_ellipse(volume, object_parameters, data=0):
 
 
 def work_ellipse(volume, object_parameters, name="ellipse"):
-    print(volume)
     ellipse = calculate_ellipse(volume, object_parameters)
-
-    print(ellipse)
 
     execute_ellipse(ellipse["OX"], ellipse["OY"], ellipse["OZ"])
 
