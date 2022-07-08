@@ -5,9 +5,8 @@ from os import path as path_os
 lib_path_configs = path_os.abspath(path_os.join(path_os.dirname(__file__), 'configs'))
 path_sys.append(lib_path_configs)
 
-import pandas_geometry_conf as excel_conf
-import geometry_conf as global_conf
-import global_utils as utils
+from project.configs import pandas_geometry_conf as excel_conf
+from project.configs import geometry_IO_conf as global_conf
 
 # List results create
 ERROR_EMPTY_DATASET = -1
@@ -25,13 +24,13 @@ def check_equal_geometry_params(left, right):
     return False
 
 
-def load_geometry_params(path, cols_geometry, path_save=global_conf.path_tmp_data_geometry__):
+def load_geometry_params(path=excel_conf.path_data_geometry, cols_geometry=excel_conf.cols_geometry__, path_save=global_conf.path_geometry_data__):
     dataset_df = pandas.read_excel(path, usecols=cols_geometry)
 
     count_geometry_set = len(dataset_df)
 
     if count_geometry_set == 0:
-        utils.output_red_text("Empty dataset")
+        print("Empty dataset")
 
         return ERROR_EMPTY_DATASET
 
@@ -62,3 +61,5 @@ def load_geometry_params(path, cols_geometry, path_save=global_conf.path_tmp_dat
              out.write('{}\n'.format(result))
 
     return list_geometry_set
+
+load_geometry_params()

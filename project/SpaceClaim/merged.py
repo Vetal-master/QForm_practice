@@ -15,7 +15,7 @@ cube_plane__ = Plane.PlaneXY
 name_base_object__ = "base_cube"
 
 # Set 3D objects
-Cube__ = "cub"
+Cube__ = "cube"
 Sphere__ = "sphere"
 Ellipse__ = "ellipse"
 
@@ -33,12 +33,12 @@ def visibility():
 def save_model(name, path=path_save__):
     options = ExportOptions.Create()
 
-    print(path + "\\" + name + ".stp")
     DocumentSave.Execute(path + "\\" + name + ".stp", options)
 
 
 def remove_model():
     selection = BodySelection.Create(GetRootPart().Bodies[0])
+
     result = Delete.Execute(selection)
 
 
@@ -56,8 +56,6 @@ def extrude_cube(cube_plane, cube, name_3D_object, center_coordinate={"O1": 0, "
 
 def execute_cube(cube_plane, cube, name_3D_object, center_coordinate={"O1": 0, "O2": 0}, angle_cube_plane=0):
     extrude_cube(cube_plane, cube, name_3D_object, center_coordinate)
-
-    time.sleep(4)
 
     targets = BodySelection.Create(GetRootPart().Bodies[0])
 
@@ -162,8 +160,8 @@ def run_create_geometry_set(path):
     lines_models = geometry_set.readlines()
 
     for line_model in lines_models:
-        cube = {"O1": edge_length__ / 2, "O2": edge_length__ / 2, "O3": edge_length__ / 2}
-        center = {"O1": edge_length__ / 4, "O2": edge_length__ / 4}
+        cube = {"O1": edge_length__ / 2.0, "O2": edge_length__ / 2.0, "O3": edge_length__ / 2.0}
+        center = {"O1": edge_length__ / 4.0, "O2": edge_length__ / 4.0}
         extrude_cube(cube_plane__, cube, name_base_object__, center)
         visibility()
 
@@ -186,10 +184,10 @@ def run_create_geometry_set(path):
                                 edge_length__)
 
         if result:
-            output_red_text(error_geometry)
+            print(error_geometry)
             exit(-1)
 
-    output_green_text(success_geometry)
+    print(success_geometry)
 
 
 # List results create
@@ -202,18 +200,18 @@ ERROR_ELLIPSE_PARAMS = -4
 
 def create_por(type_3D_object, porosity_percent, base_size, object_parameters=None):
     if (porosity_percent > 100 or porosity_percent <= 0):
-        output_red_text("Incorrect porosity percent")
+        print("Incorrect porosity percent")
 
         return ERROR_POROSITY_PERCENT_OUT_OF_RANGE
 
     if (base_size <= 0):
-        output_red_text("Incorrect base size")
+        print("Incorrect base size")
 
         return ERROR_BASE_SIZE_OUT_OF_RANGE
 
     base_volume = math.pow(base_size, 3)
 
-    porosity_coefficient = porosity_percent
+    porosity_coefficient = porosity_percent / 100
 
     porosity_volume = porosity_coefficient * base_volume
 
@@ -226,8 +224,6 @@ def create_por(type_3D_object, porosity_percent, base_size, object_parameters=No
     else:
         name_model = type_3D_object + "_" + str(porosity_percent)
 
-    print(name_model + " Start")
-
     if type_3D_object == Cube__:
         work_cube(porosity_volume, name_model)
 
@@ -236,36 +232,30 @@ def create_por(type_3D_object, porosity_percent, base_size, object_parameters=No
 
     elif type_3D_object == Ellipse__:
         if len(object_parameters) < 3:
-            output_red_text("Incorrect additional parameters. Must be 3 parameters for ellipse")
+            print("Incorrect additional parameters. Must be 3 parameters for ellipse")
 
             return ERROR_ELLIPSE_PARAMS
 
         work_ellipse(porosity_volume, object_parameters, name_model)
 
     else:
-        output_red_text("Not such type 3D object")
+        print("Not such type 3D object")
 
         return ERROR_CLASSIFICATION_TYPE
+
+    print(name_model + " DONE")
 
     return SUCCESS
 
 
-def output_red_text(massage):
-    print("\033[31m {}".format(massage))
-
-
-def output_green_text(massage):
-    print("\033[32m {}".format(massage))
-
-
 def calculate_cube(volume):
-    return float(math.pow(volume, float(1.0 / 3.0)))
+    return math.pow(volume, 1.0 / 3.0)
 
 
 def work_cube(volume, name="cube"):
-    edge = calculate_cube(volume) / 2
+    edge = calculate_cube(volume) / 2.0
 
-    execute_cube(cube_plane__, {"O1": edge, "O2": edge, "O3": edge}, "execute", {"O1": edge / 2, "O2": edge / 2})
+    execute_cube(cube_plane__, {"O1": edge, "O2": edge, "O3": edge}, "execute", {"O1": edge / 2.0, "O2": edge / 2.0})
 
     save_model(name)
 
@@ -276,7 +266,7 @@ def calculate_ellipse(volume, object_parameters, data=0):
     relative_coefficient = object_parameters["relative_OX"] * object_parameters["relative_OY"] * object_parameters[
         "relative_OZ"]
 
-    scale = 3.0 * volume / (4.0 * math.pi * relative_coefficient)
+    scale = math.pow((3.0 * volume) / (4.0 * math.pi * relative_coefficient), 1.0 / 3.0)
 
     ellipse_parameters = {
         "OX": object_parameters["relative_OX"] * scale,
@@ -288,10 +278,12 @@ def calculate_ellipse(volume, object_parameters, data=0):
 
 
 def work_ellipse(volume, object_parameters, name="ellipse"):
+    print(volume)
     ellipse = calculate_ellipse(volume, object_parameters)
+
     print(ellipse)
 
-    execute_ellipse(ellipse["OX"], ellipse["OY"], ellipse["OZ"], "execute")
+    execute_ellipse(ellipse["OX"], ellipse["OY"], ellipse["OZ"])
 
     save_model(name)
 

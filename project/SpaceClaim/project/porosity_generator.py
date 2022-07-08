@@ -1,20 +1,3 @@
-import math
-from sys import path as path_sys
-from os import path as path_os
-
-module_path_handlers = path_os.abspath(path_os.join(path_os.dirname(__file__), 'handlers'))
-path_sys.append(module_path_handlers)
-
-module_path_configs = path_os.abspath(path_os.join(path_os.dirname(__file__), 'configs'))
-path_sys.append(module_path_configs)
-
-from geometry_conf import *
-import global_utils as utils
-
-import h_cube as cube_handler
-import h_sphere as sphere_handler
-import h_ellipse as ellipse_handler
-
 # List results create
 SUCCESS = 0
 ERROR_CLASSIFICATION_TYPE = -1
@@ -23,14 +6,14 @@ ERROR_BASE_SIZE_OUT_OF_RANGE = -3
 ERROR_ELLIPSE_PARAMS = -4
 
 
-def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
+def create_por(type_3D_object, porosity_percent, base_size, object_parameters=None):
     if (porosity_percent > 100 or porosity_percent <= 0):
-        utils.output_red_text("Incorrect porosity percent")
+        print("Incorrect porosity percent")
 
         return ERROR_POROSITY_PERCENT_OUT_OF_RANGE
 
     if (base_size <= 0):
-        utils.output_red_text("Incorrect base size")
+        print("Incorrect base size")
 
         return ERROR_BASE_SIZE_OUT_OF_RANGE
 
@@ -49,25 +32,25 @@ def create(type_3D_object, porosity_percent, base_size, object_parameters=None):
     else:
         name_model = type_3D_object + "_" + str(porosity_percent)
 
-    print(name_model)
-
     if type_3D_object == Cube__:
-        cube_handler.work_cube(porosity_volume, name_model)
+        work_cube(porosity_volume, name_model)
 
     elif type_3D_object == Sphere__:
-        sphere_handler.work_sphere(porosity_volume, name_model)
+        work_sphere(porosity_volume, name_model)
 
     elif type_3D_object == Ellipse__:
         if len(object_parameters) < 3:
-            utils.output_red_text("Incorrect additional parameters. Must be 3 parameters for ellipse")
+            print("Incorrect additional parameters. Must be 3 parameters for ellipse")
 
             return ERROR_ELLIPSE_PARAMS
 
-        ellipse_handler.work_ellipse(porosity_volume, object_parameters, name_model)
+        work_ellipse(porosity_volume, object_parameters, name_model)
 
     else:
-        utils.output_red_text("Not such type 3D object")
+        print("Not such type 3D object")
 
         return ERROR_CLASSIFICATION_TYPE
+
+    print(name_model + " DONE")
 
     return SUCCESS
