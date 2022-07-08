@@ -63,12 +63,14 @@ def load_qform_params(path=global_excel_conf_.path_dataset, cols_qform=excel_con
 
 
 def get_results_qform(dataset, path=global_excel_conf_.path_dataset, cols_qform=excel_conf.cols_qform_output_):
-    dataset_df = pandas.DataFrame(dataset[global_excel_conf_.P1],
-                                  dataset[global_excel_conf_.P2],
-                                  dataset[global_excel_conf_.P3],
-                                  dataset[global_excel_conf_.medium_stresses])
+    dataset_df = pandas.DataFrame(dataset["tool_1_PZ"],
+                                  dataset["tool_2_PY"],
+                                  dataset["tool_3_PX"],
+                                  dataset["mean_stress_equal"])
 
-    dataset_df.to_excel(startcol=excel_conf.cols_qform_output_[0], header=False)
-    dataset_df.to_excel()
+    dataset_df.to_excel(startcol=cols_qform[0], header=False)
+
+    with pandas.ExcelWriter(path, mode='a') as writer:
+        dataset_df.to_excel(writer, index=False)
 
     print(conf.success_QForm_IO)

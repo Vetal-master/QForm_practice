@@ -84,7 +84,7 @@ def create_drive(V, axis):
     qform.property_set(arg17)
 
 
-def create_experiment(path_geometry, VX, VY, VZ=-1):  # цикл
+def create_experiment(dataset, path_geometry, VX, VY, VZ=-1):  # цикл
     arg21 = OperationCopy()
     arg21.id = -1
     arg21.source = 1
@@ -129,9 +129,7 @@ def create_experiment(path_geometry, VX, VY, VZ=-1):  # цикл
     arg33.percentile_2_level = 95
     ret33: FieldStat = qform.field_stat(arg33)
 
-    result = {
-        "mean_stress_equal": str(ret33.mean_value)
-    }
+    dataset["mean_stress_equal"].append(str(ret33.mean_value))
 
     # print(" mean_stress equal = " + str(ret33.mean_value))  # возвращаемый параметр
 
@@ -147,7 +145,7 @@ def create_experiment(path_geometry, VX, VY, VZ=-1):  # цикл
     arg14.func_id = 3
     ret14: Chart = qform.chart_get(arg14)
 
-    result["tool_1_PZ"] = str(ret14.func_value[0])
+    dataset["tool_1_PZ"].append(str(ret14.func_value[0]))
 
     # print(" Tool1_PZ = " + str(ret14.func_value[0]))  # возвращаемый параметр
 
@@ -163,7 +161,7 @@ def create_experiment(path_geometry, VX, VY, VZ=-1):  # цикл
     arg15.func_id = 2
     ret15: Chart = qform.chart_get(arg15)
 
-    result["tool_2_PY"] = str(ret15.func_value[0])
+    dataset["tool_2_PY"].append(str(ret15.func_value[0]))
 
     # print(" Tool2_PY = " + str(ret15.func_value[0]))  # возвращаемый параметр
 
@@ -179,8 +177,6 @@ def create_experiment(path_geometry, VX, VY, VZ=-1):  # цикл
     arg19.func_id = 1
     ret19: Chart = qform.chart_get(arg19)
 
-    result["tool_3_PX"] = str(ret19.func_value[0])
+    dataset["tool_3_PX"].append(str(ret19.func_value[0]))
 
     # print(" Tool3_PX = " + str(ret19.func_value[0]))  # возвращаемый параметр
-
-    return result
