@@ -1,5 +1,3 @@
-# Excel reader params for qform data
-cols_qform__ = [2, 3, 4]
-col_VX = 0
-col_VY = 1
-col_VZ = 2
+# Global message
+error_QForm_IO = "-------------------------------ERROR LOAD QFORM PARAMS---------------------------"
+success_QForm_IO = "------------------------------END LOAD QFORM PARAMS------------------------------"
