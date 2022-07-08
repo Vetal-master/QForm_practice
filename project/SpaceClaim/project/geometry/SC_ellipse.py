@@ -1,8 +1,3 @@
-from System.Collections.Generic import List
-from System.Collections.Generic import ICollection
-import SpaceClaim.Api.V19.Unsupported
-
-
 def extrude_ellipse(a, b, c, name_3D_object, center_coordinate={"OX": 0, "OY": 0, "OZ": 0}):
     center = Point.Create(center_coordinate["OX"], center_coordinate["OY"], center_coordinate["OZ"])
 
