@@ -13,7 +13,7 @@ path_files = [r"./global_conf.py",
               r"./SpaceClaim/project/handlers/h_sphere.py",
               r"./SpaceClaim/project/model_generator.py",
               r"./SpaceClaim/project/porosity_generator.py",
-              r"./SpaceClaim/project/run_QForm_generator.py"]
+              r"./SpaceClaim/project/run_model_generator.py"]
 
 
 def run_merge():
