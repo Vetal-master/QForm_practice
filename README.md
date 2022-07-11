@@ -4,8 +4,9 @@
 # Рабочее окружение
 1. Клиент SpaceClaim.
 2. Интерпретатор IronPython SCDM (встроен в клиент SpaceClaim).
-3. QForm Python API.
-4. Библиотека pandas.
+3. Клиент QForm.
+4. QForm Python API.
+5. Библиотека pandas.
 
 # Порядок работы.
 1. Конвертировать параметры геометрии из xlsx в txt на Python для IronPython. Необходимо для генерации моделей.
