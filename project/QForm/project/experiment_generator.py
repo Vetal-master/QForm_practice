@@ -18,6 +18,7 @@ def run_create_experiments_set(dataset):
 
         res = exp.create_experiment(connection, results_experiments, path_geometry, experiment["VX"], experiment["VY"])
 
+        # DEBUG
         print("RESULTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         print(results_experiments["tool_1_PZ"][-1],
               results_experiments["tool_2_PY"][-1],
