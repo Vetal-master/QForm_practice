@@ -1,7 +1,7 @@
 from math import fabs as abs_
 
 from project import global_conf as global_project_conf
-from configs import experiment_conf as conf
+from project.QForm.project.configs import experiment_conf as conf
 
 from sys import path as path_sys
 path_sys.append(global_project_conf.path_API_QForm)

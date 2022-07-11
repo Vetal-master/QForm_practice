@@ -1,5 +1,5 @@
-import experiment as exp
-from configs import experiment_conf as conf
+from project.QForm.project import experiment as exp
+from project.QForm.project.configs import experiment_conf as conf
 from project import global_conf as global_project_conf
 
 
