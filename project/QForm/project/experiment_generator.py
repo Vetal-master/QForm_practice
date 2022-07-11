@@ -18,6 +18,13 @@ def run_create_experiments_set(dataset):
 
         res = exp.create_experiment(connection, results_experiments, path_geometry, experiment["VX"], experiment["VY"])
 
+        print("RESULTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(results_experiments["tool_1_PZ"][-1],
+              results_experiments["tool_2_PY"][-1],
+              results_experiments["tool_3_PX"][-1],
+              results_experiments["mean_stress_equal"][-1])
+        print("RESULTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
     print(conf.success_QForm_work)
 
     return results_experiments

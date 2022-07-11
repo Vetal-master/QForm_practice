@@ -27,8 +27,6 @@ def create_drive(connection, V, axis):
 
     name_drive = r"V" + axis + "==" + str(V)
 
-    print(name_drive)
-
     if V > 0:
         direction = r"1"
     else:
@@ -36,7 +34,10 @@ def create_drive(connection, V, axis):
 
     QForm_name_drive = r'doc:drive/' + name_drive
 
-    print(r'parts/17/value:32/' + axis)
+    arg1 = DbObjectCreationParams()
+    arg1.path = QForm_name_drive  # вместо name - название привода а ля Vx==1, лучше поставить два равно, т.к. с одним равно там у же есть, или назвать по-другому
+    arg1.drive_type = DriveType.Hydraulic
+    connection.db_object_create(arg1)
 
     arg2 = DbProperty()
     arg2.db_path = QForm_name_drive  # название привода
@@ -94,7 +95,7 @@ def create_drive(connection, V, axis):
 
 
 def create_experiment(connection, dataset, path_geometry, VX, VY, VZ=-1):  # цикл
-    print(path_geometry)
+    # DEBUG
     print(VX)
     print(VY)
     print(VZ)
@@ -117,16 +118,24 @@ def create_experiment(connection, dataset, path_geometry, VX, VY, VZ=-1):  # ц�
     create_drive(connection, VZ, r"z")
     # DRIVE-----------------
 
+    connection.project_save()
+
     arg3 = SimulationParams()
     arg3.start_from_record = -1
     arg3.remesh_tools = False
-    arg3.stop_at_record = 1
+    arg3.stop_at_record = 2
     arg3.max_records = 0
     arg3.stop_at_process_time = 0
     arg3.max_process_time = 0
     arg3.max_calculation_time = 0
     arg3.calculation_mode = CalculationMode.Chain
     ret3: MainSimulationResult = connection.start_simulation_advanced(arg3)
+
+    #####
+    arg1 = Record()
+    arg1.record = 1
+    connection.record_set(arg1)
+    #####
 
     # Mean Stress [MPa]
     arg33 = FieldStatAtMesh()
@@ -145,8 +154,6 @@ def create_experiment(connection, dataset, path_geometry, VX, VY, VZ=-1):  # ц�
 
     dataset["mean_stress_equal"].append(str(ret33.mean_value))
 
-    # print(" mean_stress equal = " + str(ret33.mean_value))  # возвращаемый параметр
-
     # Load Z [MN], Time [s]
     arg14 = ChartId()
     arg14.arg_object_type = ObjectType.Tool
@@ -161,42 +168,30 @@ def create_experiment(connection, dataset, path_geometry, VX, VY, VZ=-1):  # ц�
 
     dataset["tool_1_PZ"].append(ret14.func_value[0])
 
-    # dataset["tool_1_PZ"].append(str(ret14.func_value[0]))
-
-    # print(" Tool1_PZ = " + str(ret14.func_value[0]))  # возвращаемый параметр
-
-    # Load Z [MN], Time [s]
+    # Load Y [MN], Time [s]
     arg15 = ChartId()
     arg15.arg_object_type = ObjectType.Tool
     arg15.arg_object_id = 2
     arg15.arg_subobject = -2147483648
     arg15.arg_id = 1000
     arg15.func_object_type = ObjectType.Tool
-    arg15.func_object_id = 1
+    arg15.func_object_id = 2
     arg15.func_subobject = -2147483648
     arg15.func_id = 2
     ret15: Chart = connection.chart_get(arg15)
 
     dataset["tool_2_PY"].append(ret15.func_value[0])
 
-    # dataset["tool_2_PY"].append(str(ret15.func_value[0]))
-
-    # print(" Tool2_PY = " + str(ret15.func_value[0]))  # возвращаемый параметр
-
-    # Load Z [MN], Time [s]
+    # Load X [MN], Time [s]
     arg19 = ChartId()
     arg19.arg_object_type = ObjectType.Tool
     arg19.arg_object_id = 3
     arg19.arg_subobject = -2147483648
     arg19.arg_id = 1000
     arg19.func_object_type = ObjectType.Tool
-    arg19.func_object_id = 1
+    arg19.func_object_id = 3
     arg19.func_subobject = -2147483648
     arg19.func_id = 1
     ret19: Chart = connection.chart_get(arg19)
 
     dataset["tool_3_PX"].append(ret19.func_value[0])
-
-    # dataset["tool_3_PX"].append(str(ret19.func_value[0]))
-
-    # print(" Tool3_PX = " + str(ret19.func_value[0]))  # возвращаемый параметр
