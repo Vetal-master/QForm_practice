@@ -17,10 +17,5 @@ additional_parameter_1 = "Доп. параметр 1"
 additional_parameter_2 = "Доп. параметр 2"
 additional_parameter_3 = "Доп. параметр 3"
 
-# Types porosity
-Ellipse__ = global_conf_project.Ellipse__
-Cube__ = global_conf_project.Cube__
-Sphere__ = global_conf_project.Sphere__
-
 # Path start dataset
 path_dataset = r"..\dataset\Модель_пористости.xlsx"

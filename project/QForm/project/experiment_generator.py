@@ -4,7 +4,7 @@ from project import global_conf as global_project_conf
 
 
 def run_create_experiments_set(dataset):
-    exp.launch_QForm()
+    connection = exp.launch_QForm()
 
     results_experiments = {
         "tool_1_PZ": [],
@@ -16,7 +16,7 @@ def run_create_experiments_set(dataset):
     for experiment in dataset:
         path_geometry = global_project_conf.path_save__ + "\\" + experiment["name_model"]
 
-        res = exp.create_experiment(results_experiments, path_geometry, experiment["VX"], experiment["VY"])
+        res = exp.create_experiment(connection, results_experiments, path_geometry, experiment["VX"], experiment["VY"])
 
     print(conf.success_QForm_work)
 

@@ -17,4 +17,4 @@ results = gen_exp.run_create_experiments_set(params)
 
 print(results)
 
-# load_data.get_results_qform(results)
+# load_data.get_results_qform(dataset)

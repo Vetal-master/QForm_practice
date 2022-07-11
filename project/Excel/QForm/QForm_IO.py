@@ -1,22 +1,22 @@
 import pandas
 
 from project.Excel.QForm.configs import pandas_QForm_conf as excel_conf, QForm_IO_conf as conf
-
 from project.Excel import global_excel_conf as global_excel_conf_
+from project import global_conf as global_conf_
 
 # List results create
 ERROR_EMPTY_DATASET = -1
 
 
 def get_name_model(type_3D_object, porosity_percent, object_parameters):
-    if type_3D_object == global_excel_conf_.Ellipse__:
+    if type_3D_object == global_conf_.Ellipse__:
         name_model = type_3D_object + "_" + \
                      str(porosity_percent) + "_" + \
                      str(object_parameters["additional_parameter_1"]) + "_" + \
                      str(object_parameters["additional_parameter_2"]) + "_" + \
                      str(object_parameters["additional_parameter_3"]) + ".stp"
     else:
-        name_model = type_3D_object + "_" + str(porosity_percent)
+        name_model = type_3D_object + "_" + str(porosity_percent) + ".stp"
 
     return name_model
 
