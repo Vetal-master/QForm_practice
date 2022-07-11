@@ -3,6 +3,9 @@ from project.QForm.project import experiment_generator as gen_exp
 
 params = load_data.load_qform_params()
 
+for p in params:
+    print(p)
+
 # dataset = {
 #     "tool_1_PZ": [10, 1],
 #     "tool_2_PY": [5, 2],
@@ -12,4 +15,6 @@ params = load_data.load_qform_params()
 
 results = gen_exp.run_create_experiments_set(params)
 
-load_data.get_results_qform(results)
+print(results)
+
+# load_data.get_results_qform(results)

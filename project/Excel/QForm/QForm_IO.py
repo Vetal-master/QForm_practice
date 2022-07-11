@@ -54,9 +54,6 @@ def load_qform_params(path=global_excel_conf_.path_dataset, cols_qform=excel_con
 
         list_QForm_set.append(qform_params)
 
-    for p in list_QForm_set:
-        print(p)
-
     print(conf.success_QForm_IO)
 
     return list_QForm_set

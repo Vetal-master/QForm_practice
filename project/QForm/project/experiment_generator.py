@@ -14,9 +14,9 @@ def run_create_experiments_set(dataset):
     }
 
     for experiment in dataset:
-        path_geometry = global_project_conf.path_save__ + "\\" + dataset["name_model"]
+        path_geometry = global_project_conf.path_save__ + "\\" + experiment["name_model"]
 
-        res = exp.create_experiment(results_experiments, path_geometry, dataset["VX"], dataset["VY"])
+        res = exp.create_experiment(results_experiments, path_geometry, experiment["VX"], experiment["VY"])
 
     print(conf.success_QForm_work)
 
