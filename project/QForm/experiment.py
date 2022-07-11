@@ -1,13 +1,15 @@
 from math import fabs as abs_
 
 from project import global_conf as global_project_conf
+from configs import experiment_conf as conf
 
 from sys import path as path_sys
 path_sys.append(global_project_conf.path_API_QForm)
 
 from QFormAPI import *
 
-def launch_QForm(path_client=global_project_conf.path_client_QForm, path_project=global_project_conf.path_base_script):
+
+def launch_QForm(path_client=global_project_conf.path_client_QForm, path_project=conf.path_base_script):
     qform = QForm()
 
     qform.start(path_client)
@@ -145,7 +147,9 @@ def create_experiment(dataset, path_geometry, VX, VY, VZ=-1):  # цикл
     arg14.func_id = 3
     ret14: Chart = qform.chart_get(arg14)
 
-    dataset["tool_1_PZ"].append(str(ret14.func_value[0]))
+    dataset["tool_1_PZ"].append(ret14.func_value[0])
+
+    # dataset["tool_1_PZ"].append(str(ret14.func_value[0]))
 
     # print(" Tool1_PZ = " + str(ret14.func_value[0]))  # возвращаемый параметр
 
@@ -161,7 +165,9 @@ def create_experiment(dataset, path_geometry, VX, VY, VZ=-1):  # цикл
     arg15.func_id = 2
     ret15: Chart = qform.chart_get(arg15)
 
-    dataset["tool_2_PY"].append(str(ret15.func_value[0]))
+    dataset["tool_2_PY"].append(ret15.func_value[0])
+
+    # dataset["tool_2_PY"].append(str(ret15.func_value[0]))
 
     # print(" Tool2_PY = " + str(ret15.func_value[0]))  # возвращаемый параметр
 
@@ -177,6 +183,8 @@ def create_experiment(dataset, path_geometry, VX, VY, VZ=-1):  # цикл
     arg19.func_id = 1
     ret19: Chart = qform.chart_get(arg19)
 
-    dataset["tool_3_PX"].append(str(ret19.func_value[0]))
+    dataset["tool_3_PX"].append(ret19.func_value[0])
+
+    # dataset["tool_3_PX"].append(str(ret19.func_value[0]))
 
     # print(" Tool3_PX = " + str(ret19.func_value[0]))  # возвращаемый параметр

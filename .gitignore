@@ -1,3 +1,6 @@
 .idea
 /tmp_data_log
-/tests/Модель_пористости.txt
+/dataset/Модель_пористости.txt
+/tmp_models
+dataset/QForm_files/Base_script.data
+project/SpaceClaim/merged.py

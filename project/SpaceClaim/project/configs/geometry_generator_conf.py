@@ -7,4 +7,3 @@ edge_length__ = 0.1 * 2  # (м)
 cube_plane__ = Plane.PlaneXY
 name_base_object__ = "base_cube"
 
-
