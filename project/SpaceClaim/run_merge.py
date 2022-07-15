@@ -18,11 +18,11 @@ path_files = [r"./global_conf.py",
 
 def run_merge():
     try:
-        os.remove(r'.\SpaceClaim\merged.py')
+        os.remove(r'E:\Python\QForm_practice\project\SpaceClaim\merged.py')
     except OSError as e:
         print("File not exist, create file")
 
-    with open(r'.\SpaceClaim\merged.py', 'w+') as file:
+    with open(r'E:\Python\QForm_practice\project\SpaceClaim\merged.py', 'w+') as file:
         for path_file in path_files:
             input_lines = fileinput.input(path_file, mode="r")
 
