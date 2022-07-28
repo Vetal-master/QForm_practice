@@ -1,3 +1,4 @@
+import re
 from math import fabs as abs_
 
 from project import global_conf as global_project_conf
@@ -103,6 +104,8 @@ def create_experiment(connection, dataset, path_geometry, VX, VY, VZ=-1):  # Ñ†Ð
     arg21 = OperationCopy()
     arg21.id = -1
     arg21.source = 1
+    a = (re.split('tmp_models|.stp',path_geometry))
+    arg21.process_name = a[-2].replace('\\', '') + ' VX=' + str(VX) + ' VY=' + str(VY)+ ' VZ=' + str(VZ)
     arg21.make_copy_active = True
     ret21: ItemId = connection.operation_copy(arg21)
 
