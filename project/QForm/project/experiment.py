@@ -14,7 +14,7 @@ from QFormAPI import *
 def launch_QForm(path_client=global_project_conf.path_client_QForm, path_project=conf.path_base_script):
     qform = QForm()
 
-    qform.start(path_client)
+    qform.start_or_attach(path_client)
 
     arg1 = FileName()
     arg1.file = path_project

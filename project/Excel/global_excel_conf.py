@@ -18,4 +18,4 @@ additional_parameter_2 = "Доп. параметр 2"
 additional_parameter_3 = "Доп. параметр 3"
 
 # Path start dataset
-path_dataset = r"E:\Python\QForm_practice\dataset\Модель_пористости.xlsx"
+path_dataset = r"D:\2022\pycharm_projects\QForm_practice\dataset\Модель_пористости.xlsx"
